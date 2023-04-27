@@ -20,6 +20,3 @@ Set up a Git(hub) repository and write your script!
 
 # Part 4: For the bored
 How do you test your script? Can you write Unit Tests for it?
-
-Logs of Failure are Useful
-There
