@@ -34,8 +34,12 @@ def main():
         if search_word_in_file(txt):
             txt = input("This word is correct! But I'm still hungry. Gimme another word, please: ")
         else:
-            print("This word is incorrect. Maybe your word is one in the list below: ")
-            print(find_recommended_word(txt))
+            recommend_words = find_recommended_word(txt)
+            if len(recommend_words) == 0:
+                print("This word doesn't exist!!!!!!")
+            else:
+                print("This word is a bit incorrect. Maybe your word is one in the list below: ")
+                print(recommend_words)
             txt = input("Please insert a new word and press enter: ")
 
     print("Thanks for using our programm. Have a nice day!")
@@ -88,6 +92,7 @@ def find_recommended_word(input_word):
     recommended_words = dict(sorted(recommended_list.items(), key=lambda x: x[1], reverse=True))
 
     return list(recommended_words)[:20]
+
 
 def calculate_grade(input_word, possibly_right_word):
     check_grade = 100 - 8 * abs(len(input_word) - len(possibly_right_word))
