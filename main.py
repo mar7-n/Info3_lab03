@@ -1,14 +1,5 @@
 import math
 
-
-def onlyAlphabetCharacters(txt):
-    for i in range(len(txt)):
-        letter = ord(txt[i])
-        if not (letter>64 and letter<91) and not (letter>96 and letter<123):
-            return False
-    return True
-
-
 def main():
 
     txt = input("Welcome to the digital orthography corrector Pro 2.0!\n"
@@ -21,15 +12,14 @@ def main():
         "Now type your word please and press enter: ")
 
     while txt != "exit corrector":
-        txt = txt.replace(' ', '')
+        txt = removeSpaceInfrontBehind(txt)
         while not onlyAlphabetCharacters(txt):
             txt = input("That's wrong. You can just use letters from the english alphabet.\n"
+                  "You can't use spaces or any other symbol either!\n"
                   "Please insert a new word and press enter: ")
             txt = txt.replace(' ', '')
 
         txt = txt.upper()
-
-        # PHUC PART
 
         if search_word_in_file(txt):
             txt = input("This word is correct! But I'm still hungry. Gimme another word, please: ")
@@ -43,6 +33,20 @@ def main():
             txt = input("Please insert a new word and press enter: ")
 
     print("Thanks for using our programm. Have a nice day!")
+
+def onlyAlphabetCharacters(txt):
+    for i in range(len(txt)):
+        letter = ord(txt[i])
+        if not (letter>64 and letter<91) and not (letter>96 and letter<123):
+            return False
+    return True
+
+def removeSpaceInfrontBehind(txt):
+    while txt[0] == ' ':
+        txt = txt[1:]
+    while txt[len(txt)-1] == ' ':
+        txt = txt[:(len(txt)-1)]
+    return txt
 
 
 def search_word_in_file(word):
